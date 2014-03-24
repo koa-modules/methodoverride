@@ -24,7 +24,8 @@ app.use(function *(next) {
   yield next;
 });
 
-app.use(methodOverride());
+var key = '_method'; // default
+app.use(methodOverride(key));
 
 app.listen(3000);
 ```
