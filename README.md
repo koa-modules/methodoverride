@@ -1,4 +1,4 @@
-# Method Override [![Build Status](https://travis-ci.org/fundon/koa-methodoverride.svg)](https://travis-ci.org/fundon/koa-methodoverride)
+# Method Override [![Build Status](https://travis-ci.org/fundon/koa-method-override.svg)](https://travis-ci.org/fundon/koa-method-override)
 > HTTP method override for koa.
 
 ### Install
