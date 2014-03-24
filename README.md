@@ -31,7 +31,7 @@ app.listen(3000);
 ### Dependencies
 
 * [co-body](https://github.com/visionmedia/co-body)
-* or other body parser
+* Or other body parser
 
 
 ### License
