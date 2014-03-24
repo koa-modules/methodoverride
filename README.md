@@ -1,4 +1,4 @@
-# __Method Override__ for koa
+# __Method Override__ for koa [![Build Status](https://travis-ci.org/fundon/koa-methodoverride.svg)](https://travis-ci.org/fundon/koa-methodoverride)
 
 ### Install
 
@@ -27,3 +27,13 @@ app.use(methodOverride());
 
 app.listen(3000);
 ```
+
+### Dependencies
+
+* [co-body](https://github.com/visionmedia/co-body)
+* or other body parser
+
+
+### License
+
+MIT
