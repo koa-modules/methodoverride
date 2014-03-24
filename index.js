@@ -14,7 +14,7 @@ var methods = require('methods');
  *
  *  Pass an optional `key` to use when checking for
  *  a method override, otherwise defaults to _\_method_.
- *  The original method is available via `req.originalMethod`.
+ *  The original method is available via `request.originalMethod`.
  *
  *  @param {String} key
  *  @return {Function}
