@@ -8,7 +8,7 @@ npm install koa-methodoverride
 
 ### Usage
 
-```
+```js
 var app = require('koa')();
 var parse = require('co-body');
 var methodOverride = require('koa-methodoverride');
