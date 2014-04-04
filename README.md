@@ -1,6 +1,8 @@
 # Method Override [![Build Status](https://travis-ci.org/fundon/koa-method-override.svg)](https://travis-ci.org/fundon/koa-method-override)
 > HTTP method override middleware for koa.
 
+Forked from [method-override](https://github.com/expressjs/method-override).
+
 ### Install
 
 ```
