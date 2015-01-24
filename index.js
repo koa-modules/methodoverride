@@ -16,7 +16,7 @@
 var debug = require('debug')('method-override')
 var methods = require('methods');
 
-var METHOD_OVERRIDE_PARAM_KEY = '_method';
+//var METHOD_OVERRIDE_PARAM_KEY = '_method';
 var HTTP_METHOD_OVERRIDE_HEADER = "X-HTTP-Method-Override";
 var ALLOWED_METHODS = ['POST'];
 
