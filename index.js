@@ -114,7 +114,7 @@ function createHeaderGetter(str) {
 
   return function(req, res) {
     // set appropriate Vary header
-    res.vary(str);
+    res.vary(str)
 
     // multiple headers get joined with comma by node.js core
     return (req.headers[header] || '').split(/ *, */)
