@@ -1,7 +1,15 @@
-# Method Override [![Build Status](https://travis-ci.org/fundon/koa-method-override.svg)](https://travis-ci.org/fundon/koa-method-override)
+# koa-methodoverride
+
 > HTTP method override middleware for koa.
 
 Forked from [method-override](https://github.com/expressjs/method-override).
+
+
+[![NPM version][npm-img]][npm-url]
+[![Build status][travis-img]][travis-url]
+[![Test coverage][coveralls-img]][coveralls-url]
+[![License][license-img]][license-url]
+[![Dependency status][david-img]][david-url]
 
 ### Install
 
@@ -9,35 +17,30 @@ Forked from [method-override](https://github.com/expressjs/method-override).
 npm install koa-methodoverride
 ```
 
-### Usage
+### Usage, more [method-Override][]
 
 ```js
 var app = require('koa')();
-var parse = require('co-body');
 var methodOverride = require('koa-methodoverride');
 
-// First, must parse the body, use the `co-body` or the `koa-bodyparser` etc.
-app.use(function *(next) {
-  try {
-    this.request.body = yield parse(this);
-  } catch (e) {
-    this.request.body = null;
-  }
-  yield next;
-});
-
-var key = '_method'; // default
-app.use(methodOverride(key));
+app.use(methodOverride());
 
 app.listen(3000);
 ```
-
-### Dependencies
-
-* [co-body](https://github.com/visionmedia/co-body)
-* Or other body parser
 
 
 ### License
 
 MIT
+
+
+[npm-img]: https://img.shields.io/npm/v/koa-methodoverride.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/koa-methodoverride
+[travis-img]: https://img.shields.io/travis/koa-modules/koa-methodoverride.svg?style=flat-square
+[travis-url]: https://travis-ci.org/koa-modules/koa-methodoverride
+[coveralls-img]: https://img.shields.io/coveralls/koa-modules/koa-methodoverride.svg?style=flat-square
+[coveralls-url]: https://coveralls.io/r/koa-modules/koa-methodoverride?branch=master
+[license-img]: https://img.shields.io/badge/license-MIT-green.svg?style=flat-square
+[license-url]: LICENSE
+[david-img]: https://img.shields.io/david/koa-modules/koa-methodoverride.svg?style=flat-square
+[david-url]: https://david-dm.org/koa-modules/koa-methodoverride

@@ -1,6 +1,6 @@
 {
   "name": "koa-methodoverride",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "HTTP method override for koa",
   "main": "index.js",
   "scripts": {
@@ -8,25 +8,22 @@
   },
   "keywords": [
     "method",
-    "override"
+    "override",
+    "koa",
+    "middleware"
   ],
   "author": "fundon <cfddream@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "methods": "^0.1.0"
+    "debug": "*",
+    "methods": "*"
   },
   "devDependencies": {
-    "should": "^3.2.0-beta1",
-    "supertest": "^0.10.0",
-    "koa": "^0.5.2",
-    "mocha": "^1.18.2",
-    "co-body": "0.0.1"
+    "co-body": "*",
+    "koa": "*",
+    "mocha": "*",
+    "should": "*",
+    "supertest": "*"
   },
-  "repository": {
-    "type": "git",
-    "url": "http://github.com/fundon/koa-method-override.git"
-  },
-  "bugs": {
-    "url": "https://github.com/fundon/koa-method-override/issues"
-  }
+  "repository": "koa-modules/koa-method-override"
 }
