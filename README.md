@@ -2,7 +2,7 @@
 
 > HTTP method override middleware for koa.
 
-Forked from [method-override](https://github.com/expressjs/method-override).
+Forked from [Express method-override][]
 
 
 [![NPM version][npm-img]][npm-url]
@@ -17,7 +17,7 @@ Forked from [method-override](https://github.com/expressjs/method-override).
 npm install koa-methodoverride
 ```
 
-### Usage, more [method-Override][]
+### Usage, more [Express method-override][]
 
 ```js
 var app = require('koa')();
@@ -32,6 +32,9 @@ app.listen(3000);
 ### License
 
 MIT
+
+
+[Express method-override]: https://github.com/expressjs/method-override
 
 
 [npm-img]: https://img.shields.io/npm/v/koa-methodoverride.svg?style=flat-square
