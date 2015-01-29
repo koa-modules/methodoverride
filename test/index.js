@@ -1,5 +1,4 @@
 var koa = require('koa');
-var parse = require('co-body');
 var methodOverride = require('..')
 var request = require('supertest');
 

@@ -1,6 +1,6 @@
 {
   "name": "koa-methodoverride",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "HTTP method override for koa",
   "main": "index.js",
   "scripts": {
@@ -19,11 +19,10 @@
     "methods": "*"
   },
   "devDependencies": {
-    "co-body": "*",
     "koa": "*",
     "mocha": "*",
     "should": "*",
     "supertest": "*"
   },
-  "repository": "koa-modules/koa-method-override"
+  "repository": "koa-modules/methodoverride"
 }
