@@ -1,7 +1,10 @@
 {
   "name": "koa-methodoverride",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "HTTP method override for koa",
+  "author": "fundon <cfddream@gmail.com>",
+  "license": "MIT",
+  "repository": "koa-modules/methodoverride",
   "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=test ./node_modules/.bin/mocha --harmony --reporter spec --require should"
@@ -12,8 +15,6 @@
     "koa",
     "middleware"
   ],
-  "author": "fundon <cfddream@gmail.com>",
-  "license": "MIT",
   "dependencies": {
     "debug": "*",
     "methods": "*"
@@ -24,5 +25,8 @@
     "should": "*",
     "supertest": "*"
   },
-  "repository": "koa-modules/methodoverride"
+  "files": [
+    "LICENSE",
+    "index.js"
+  ]
 }
