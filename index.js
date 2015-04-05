@@ -16,7 +16,6 @@
 var debug = require('debug')('method-override')
 var methods = require('methods');
 
-//var METHOD_OVERRIDE_PARAM_KEY = '_method';
 var HTTP_METHOD_OVERRIDE_HEADER = "X-HTTP-Method-Override";
 var ALLOWED_METHODS = ['POST'];
 
@@ -42,7 +41,7 @@ var ALLOWED_METHODS = ['POST'];
  * @api public
  */
 
-module.exports = function methodOverride(getter, options){
+module.exports = function methodOverride(getter, options) {
   options = options || {}
 
   // get the getter fn
@@ -55,7 +54,7 @@ module.exports = function methodOverride(getter, options){
     ? ALLOWED_METHODS
     : options.methods
 
-  return function *methodOverride(next) {
+  return function* methodOverride(next) {
     var method
     var val
     var req = this.request
@@ -68,9 +67,7 @@ module.exports = function methodOverride(getter, options){
     }
 
     val = get(req, this.response)
-    method = Array.isArray(val)
-      ? val[0]
-      : val
+    method = Array.isArray(val) ? val[0] : val
 
     // replace
     if (method !== undefined && supports(method)) {
@@ -87,7 +84,7 @@ module.exports = function methodOverride(getter, options){
  */
 
 function createGetter(str) {
-  if (str.substr(0, 2).toUpperCase() === 'X-') {
+  if (str.substring(0, 2).toUpperCase() === 'X-') {
     // header getter
     return createHeaderGetter(str)
   }
@@ -100,7 +97,9 @@ function createGetter(str) {
  */
 
 function createQueryGetter(key) {
-  return function(req) {
+  return queryGetter
+
+  function queryGetter(req) {
     return req.query[key]
   }
 }
@@ -112,7 +111,9 @@ function createQueryGetter(key) {
 function createHeaderGetter(str) {
   var header = str.toLowerCase()
 
-  return function(req, res) {
+  return headerGetter
+
+  function headerGetter(req, res) {
     // set appropriate Vary header
     res.vary(str)
 
