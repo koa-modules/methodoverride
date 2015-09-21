@@ -1,6 +1,6 @@
 {
   "name": "koa-methodoverride",
-  "version": "0.4.2",
+  "version": "1.0.0",
   "description": "HTTP method override for koa",
   "author": "Fangdun Cai <cfddream@gmail.com>",
   "license": "MIT",
