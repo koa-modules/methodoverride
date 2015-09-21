@@ -1,13 +1,13 @@
-var koa = require('koa');
-var methodOverride = require('..')
-var request = require('supertest');
+const koa = require('koa')
+const methodOverride = require('..')
+const request = require('supertest')
 
 describe('methodOverride(getter)', function(){
   it('should not touch the method by default', function(done){
     var server = createServer()
     request(server)
     .get('/')
-    .expect('GET', done);
+    .expect('GET', done)
   })
 
   it('should use X-HTTP-Method-Override by default', function(done){
@@ -15,7 +15,7 @@ describe('methodOverride(getter)', function(){
     request(server)
     .post('/')
     .set('X-HTTP-Method-Override', 'DELETE')
-    .expect('DELETE', done);
+    .expect('DELETE', done)
   })
 
   describe('with query', function(){
@@ -24,7 +24,7 @@ describe('methodOverride(getter)', function(){
       request(server)
       .post('/')
       .set('Content-Type', 'application/json')
-      .expect('POST', done);
+      .expect('POST', done)
     })
 
     it('should be case in-sensitive', function(done){
@@ -170,11 +170,11 @@ describe('methodOverride(getter)', function(){
 })
 
 function createServer(getter, opts, fn) {
-  var app = koa();
-  fn && app.use(fn);
-  app.use(methodOverride(getter,opts));
+  const app = koa()
+  fn && app.use(fn)
+  app.use(methodOverride(getter,opts))
   app.use(function *() {
-    this.body = this.request.method;
-  });
-  return app.listen();
+    this.body = this.request.method
+  })
+  return app.listen()
 }

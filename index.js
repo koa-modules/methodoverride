@@ -13,11 +13,12 @@
 /**
  * Module dependences.
  */
-var debug = require('debug')('method-override')
-var methods = require('methods');
 
-var HTTP_METHOD_OVERRIDE_HEADER = "X-HTTP-Method-Override";
-var ALLOWED_METHODS = ['POST'];
+const debug = require('debug')('method-override')
+const methods = require('methods')
+
+const HTTP_METHOD_OVERRIDE_HEADER = "X-HTTP-Method-Override"
+const ALLOWED_METHODS = ['POST']
 
 /**
  * Method Override:
@@ -45,12 +46,12 @@ module.exports = function methodOverride(getter, options) {
   options = options || {}
 
   // get the getter fn
-  var get = typeof getter === 'function'
+  const get = typeof getter === 'function'
     ? getter
     : createGetter(getter || HTTP_METHOD_OVERRIDE_HEADER)
 
   // get allowed request methods to examine
-  var methods = options.methods === undefined
+  const methods = options.methods === undefined
     ? ALLOWED_METHODS
     : options.methods
 

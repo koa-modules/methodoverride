@@ -2,12 +2,14 @@
   "name": "koa-methodoverride",
   "version": "0.4.2",
   "description": "HTTP method override for koa",
-  "author": "fundon <cfddream@gmail.com>",
+  "author": "Fangdun Cai <cfddream@gmail.com>",
   "license": "MIT",
   "repository": "koa-modules/methodoverride",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=test ./node_modules/.bin/mocha --harmony --reporter spec --require should"
+    "test": "mocha --harmony --reporter spec --bail --check-leaks",
+    "test-ci": "node_modules/.bin/istanbul cover node_modules/.bin/_mocha --report lcovonly -- --reporter spec --check-leaks test/*.js",
+    "test-cov": "node_modules/.bin/istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot --check-leaks test/*.js"
   },
   "keywords": [
     "method",
@@ -20,13 +22,14 @@
     "methods": "*"
   },
   "devDependencies": {
+    "istanbul": "*",
     "koa": "*",
     "mocha": "*",
-    "should": "*",
     "supertest": "*"
   },
   "files": [
-    "LICENSE",
+    "license",
+    "readme.md",
     "index.js"
   ]
 }
