@@ -7,9 +7,9 @@
   "repository": "koa-modules/methodoverride",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --harmony --reporter spec --bail --check-leaks",
-    "test-ci": "node_modules/.bin/istanbul cover node_modules/.bin/_mocha --report lcovonly -- --reporter spec --check-leaks test/*.js",
-    "test-cov": "node_modules/.bin/istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot --check-leaks test/*.js"
+    "test": "mocha --reporter spec --bail --check-leaks",
+    "test-ci": "istanbul cover node_modules/.bin/_mocha --report lcovonly -- --reporter spec --check-leaks test/*.js",
+    "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot --check-leaks test/*.js"
   },
   "keywords": [
     "method",
@@ -22,10 +22,13 @@
     "methods": "*"
   },
   "devDependencies": {
-    "istanbul": "*",
-    "koa": "*",
-    "mocha": "*",
-    "supertest": "*"
+    "istanbul": "^0.x",
+    "koa": "^2.0.0-alpha.3",
+    "mocha": "^2.x",
+    "supertest": "^1.x"
+  },
+  "engines": {
+    "node": ">= 4.0.0"
   },
   "files": [
     "license",

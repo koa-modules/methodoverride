@@ -1,16 +1,16 @@
-const koa = require('koa')
-const methodOverride = require('..')
+const Koa = require('koa')
 const request = require('supertest')
+const methodOverride = require('..')
 
-describe('methodOverride(getter)', function(){
-  it('should not touch the method by default', function(done){
+describe('methodOverride(getter)', () => {
+  it('should not touch the method by default', (done) => {
     var server = createServer()
     request(server)
     .get('/')
     .expect('GET', done)
   })
 
-  it('should use X-HTTP-Method-Override by default', function(done){
+  it('should use X-HTTP-Method-Override by default', (done) => {
     var server = createServer()
     request(server)
     .post('/')
@@ -18,8 +18,8 @@ describe('methodOverride(getter)', function(){
     .expect('DELETE', done)
   })
 
-  describe('with query', function(){
-    it('should work missing query', function(done){
+  describe('with query', () => {
+    it('should work missing query', (done) => {
       var server = createServer('_method')
       request(server)
       .post('/')
@@ -27,7 +27,7 @@ describe('methodOverride(getter)', function(){
       .expect('POST', done)
     })
 
-    it('should be case in-sensitive', function(done){
+    it('should be case in-sensitive', (done) => {
       var server = createServer('_method')
       request(server)
       .post('/?_method=DElete')
@@ -35,7 +35,7 @@ describe('methodOverride(getter)', function(){
       .expect('DELETE', done);
     })
 
-    it('should handle key referencing array', function(done){
+    it('should handle key referencing array', (done) => {
       var server = createServer('_method')
       var test = request(server).post('/')
       test.request().path += '?_method=DELETE&_method=PUT' // supertest mangles query params
@@ -43,7 +43,7 @@ describe('methodOverride(getter)', function(){
       test.expect('DELETE', done)
     })
 
-    it('should only work with POST', function(done){
+    it('should only work with POST', (done) => {
       var server = createServer('_method')
 
       request(server)
@@ -53,20 +53,20 @@ describe('methodOverride(getter)', function(){
     })
   })
 
-  describe('with header', function(){
+  describe('with header', () => {
     var server
-    before(function () {
+    before(() => {
       server = createServer('X-HTTP-Method-Override')
     })
 
-    it('should work missing header', function(done){
+    it('should work missing header', (done) => {
       request(server)
       .post('/')
       .set('Content-Type', 'application/json')
       .expect('POST', done)
     })
 
-    it('should be case in-sensitive', function(done){
+    it('should be case in-sensitive', (done) => {
       request(server)
       .post('/')
       .set('Content-Type', 'application/json')
@@ -74,7 +74,7 @@ describe('methodOverride(getter)', function(){
       .expect('DELETE', done)
     })
 
-    it('should ignore invalid methods', function(done){
+    it('should ignore invalid methods', (done) => {
       request(server)
       .post('/')
       .set('Content-Type', 'application/json')
@@ -82,7 +82,7 @@ describe('methodOverride(getter)', function(){
       .expect('POST', done)
     })
 
-    it('should handle multiple headers', function(done){
+    it('should handle multiple headers', (done) => {
       request(server)
       .post('/')
       .set('Content-Type', 'application/json')
@@ -90,7 +90,7 @@ describe('methodOverride(getter)', function(){
       .expect('DELETE', done)
     })
 
-    it('should set Vary header', function(done){
+    it('should set Vary header', (done) => {
       request(server)
       .post('/')
       .set('Content-Type', 'application/json')
@@ -99,7 +99,7 @@ describe('methodOverride(getter)', function(){
       .expect('DELETE', done)
     })
 
-    it('should set Vary header even with no override', function(done){
+    it('should set Vary header even with no override', (done) => {
       request(server)
       .post('/')
       .set('Content-Type', 'application/json')
@@ -108,22 +108,22 @@ describe('methodOverride(getter)', function(){
     })
   })
 
-  describe('with function', function(){
+  describe('with function', () => {
     var server
-    before(function () {
-      server = createServer(function(req){
+    before(() => {
+      server = createServer((req) => {
         return req.headers['x-method-override'] || 'PaTcH'
       })
     })
 
-    it('should work missing header', function(done){
+    it('should work missing header', (done) => {
       request(server)
       .post('/')
       .set('Content-Type', 'application/json')
       .expect('PATCH', done)
     })
 
-    it('should be case in-sensitive', function(done){
+    it('should be case in-sensitive', (done) => {
       request(server)
       .post('/')
       .set('Content-Type', 'application/json')
@@ -131,7 +131,7 @@ describe('methodOverride(getter)', function(){
       .expect('DELETE', done)
     })
 
-    it('should ignore invalid methods', function(done){
+    it('should ignore invalid methods', (done) => {
       request(server)
       .post('/')
       .set('Content-Type', 'application/json')
@@ -140,8 +140,8 @@ describe('methodOverride(getter)', function(){
     })
   })
 
-  describe('given "options.methods"', function(){
-    it('should allow other methods', function(done){
+  describe('given "options.methods"', () => {
+    it('should allow other methods', (done) => {
       var server = createServer('X-HTTP-Method-Override', { methods: ['POST', 'PATCH'] })
       request(server)
       .patch('/')
@@ -150,7 +150,7 @@ describe('methodOverride(getter)', function(){
       .expect('DELETE', done)
     })
 
-    it('should allow all methods', function(done){
+    it('should allow all methods', (done) => {
       var server = createServer('X-HTTP-Method-Override', { methods: null })
       request(server)
       .patch('/')
@@ -159,8 +159,8 @@ describe('methodOverride(getter)', function(){
       .expect('DELETE', done)
     })
 
-    it('should not call getter when method not allowed', function(done){
-      var server = createServer(function(req){ return 'DELETE' })
+    it('should not call getter when method not allowed', (done) => {
+      var server = createServer((req) => { return 'DELETE' })
       request(server)
       .patch('/')
       .set('Content-Type', 'application/json')
@@ -170,11 +170,11 @@ describe('methodOverride(getter)', function(){
 })
 
 function createServer(getter, opts, fn) {
-  const app = koa()
+  const app = new Koa()
   fn && app.use(fn)
-  app.use(methodOverride(getter,opts))
-  app.use(function *() {
-    this.body = this.request.method
+  app.use(methodOverride(getter, opts))
+  app.use(ctx => {
+    ctx.body = ctx.req.method
   })
   return app.listen()
 }

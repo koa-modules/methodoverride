@@ -1,3 +1,5 @@
+'use strict'
+
 /*!
  * method-override
  * Copyright(c) 2010 Sencha Inc.
@@ -8,8 +10,6 @@
  * MIT Licensed
  */
 
-'use strict';
-
 /**
  * Module dependences.
  */
@@ -17,8 +17,8 @@
 const debug = require('debug')('method-override')
 const methods = require('methods')
 
+const ALLOWED_METHODS = 'POST'
 const HTTP_METHOD_OVERRIDE_HEADER = "X-HTTP-Method-Override"
-const ALLOWED_METHODS = ['POST']
 
 /**
  * Method Override:
@@ -42,7 +42,9 @@ const ALLOWED_METHODS = ['POST']
  * @api public
  */
 
-module.exports = function methodOverride(getter, options) {
+module.exports = methodOverride
+
+function methodOverride(getter, options) {
   options = options || {}
 
   // get the getter fn
@@ -52,31 +54,31 @@ module.exports = function methodOverride(getter, options) {
 
   // get allowed request methods to examine
   const methods = options.methods === undefined
-    ? ALLOWED_METHODS
+    ? ALLOWED_METHODS.split(' ')
     : options.methods
 
-  return function* methodOverride(next) {
-    var method
-    var val
-    var req = this.request
+  return (ctx, next) => {
+    const req = ctx.request
+    let method
+    let val
 
     req.originalMethod = req.originalMethod || req.method
 
     // validate request is an allowed method
     if (methods && methods.indexOf(req.originalMethod) === -1) {
-      return yield* next
+      return next()
     }
 
-    val = get(req, this.response)
+    val = get(req, ctx.response)
     method = Array.isArray(val) ? val[0] : val
 
     // replace
     if (method !== undefined && supports(method)) {
       req.method = method.toUpperCase()
-      debug('override %s as %s', req.originalMethod, req.method)
+      debug(`override ${req.originalMethod} as ${req.method}`)
     }
 
-    yield* next
+    return next()
   }
 }
 
