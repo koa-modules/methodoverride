@@ -48,4 +48,4 @@ MIT
 [license-url]: LICENSE
 [david-img]: https://img.shields.io/david/koa-modules/methodoverride.svg?style=flat-square
 [david-url]: https://david-dm.org/koa-modules/methodoverride
-[downloads-image]: https://img.shields.io/npm/dm/koa-methodoverride?style=flat-square
+[downloads-image]: https://img.shields.io/npm/dm/koa-methodoverride.svg?style=flat-square
