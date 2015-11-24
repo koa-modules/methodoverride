@@ -6,10 +6,11 @@ Forked from [Express method-override][]
 
 
 [![NPM version][npm-img]][npm-url]
+[![NPM Downloads][downloads-image]][npm-url]
 [![Build status][travis-img]][travis-url]
 [![Test coverage][coveralls-img]][coveralls-url]
-[![License][license-img]][license-url]
 [![Dependency status][david-img]][david-url]
+[![License][license-img]][license-url]
 
 ### Install
 
@@ -47,3 +48,4 @@ MIT
 [license-url]: LICENSE
 [david-img]: https://img.shields.io/david/koa-modules/methodoverride.svg?style=flat-square
 [david-url]: https://david-dm.org/koa-modules/methodoverride
+[downloads-image]: https://img.shields.io/npm/dm/koa-methodoverride?style=flat-square
