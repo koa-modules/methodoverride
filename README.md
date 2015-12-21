@@ -18,6 +18,8 @@ Forked from [Express method-override][]
 npm install koa-methodoverride
 ```
 
+* note: `koa-methodoverride@2.x` is for `koa@2.x`, use `koa-methodoverride@1.x` with `koa@1.x`.
+
 ### Usage, more [Express method-override][]
 
 ```js
