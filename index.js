@@ -103,7 +103,7 @@ function createQueryOrBodyGetter(key) {
   return queryOrBodyGetter
 
   function queryOrBodyGetter(req) {
-    return req.query[key] || req.body[key]
+    return req.query[key] || (req.body && req.body[key])
   }
 }
 
