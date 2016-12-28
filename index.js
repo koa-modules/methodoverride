@@ -92,18 +92,18 @@ function createGetter(str) {
     return createHeaderGetter(str)
   }
 
-  return createQueryGetter(str)
+  return createQueryOrBodyGetter(str)
 }
 
 /**
- * Create a getter for the given query key name.
+ * Create a getter for the given query or body key name.
  */
 
-function createQueryGetter(key) {
-  return queryGetter
+function createQueryOrBodyGetter(key) {
+  return queryOrBodyGetter
 
-  function queryGetter(req) {
-    return req.query[key]
+  function queryOrBodyGetter(req) {
+    return req.query[key] || req.body[key]
   }
 }
 
