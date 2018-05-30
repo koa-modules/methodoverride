@@ -16,9 +16,12 @@
 
 const debug = require('debug')('method-override')
 const methods = require('methods')
+const asyncBusboy = require('async-busboy')
 
 const ALLOWED_METHODS = 'POST'
 const HTTP_METHOD_OVERRIDE_HEADER = "X-HTTP-Method-Override"
+
+let asyncBusboyBody = null
 
 /**
  * Method Override:
@@ -57,7 +60,7 @@ function methodOverride(getter, options) {
     ? ALLOWED_METHODS.split(' ')
     : options.methods
 
-  return (ctx, next) => {
+  return async (ctx, next) => {
     const req = ctx.request
     let method
     let val
@@ -69,7 +72,10 @@ function methodOverride(getter, options) {
       return next()
     }
 
-    val = get(req, ctx.response)
+    asyncBusboyBody = null
+    ctx.req.getAsyncBusboyBody = async () => (asyncBusboyBody || await asyncBusboy(ctx.req))
+
+    val = await get(req, ctx.response, ctx.req)
     method = Array.isArray(val) ? val[0] : val
 
     // replace
@@ -92,18 +98,25 @@ function createGetter(str) {
     return createHeaderGetter(str)
   }
 
-  return createQueryGetter(str)
+  return createQueryOrBodyGetter(str)
 }
 
 /**
- * Create a getter for the given query key name.
+ * Create a getter for the given query or body key name.
  */
 
-function createQueryGetter(key) {
-  return queryGetter
+function createQueryOrBodyGetter(key) {
+  return queryOrBodyGetter
 
-  function queryGetter(req) {
-    return req.query[key]
+  async function queryOrBodyGetter(req, ...args) {
+    const method = req.query[key] || (req.body && req.body[key])
+    if (method) {
+      return method
+    } else {
+      const koaReq = args[1]
+      asyncBusboyBody = await asyncBusboy(koaReq)
+      return asyncBusboyBody.fields[key]
+    }
   }
 }
 

@@ -26,9 +26,20 @@ npm install koa-methodoverride
 var app = require('koa')();
 var methodOverride = require('koa-methodoverride');
 
-app.use(methodOverride());
+app.use(methodOverride('_method'));
 
 app.listen(3000);
+```
+
+This package leverages [async-busboy](https://github.com/m4nuC/async-busboy) for `multipart/formdata` enctype.  
+For those who want to read files and fields in this case, a new helper method `ctx.req.getAsyncBusboyBody()` is exposed.
+Thus, instead of
+```js
+const { files, fields } = await asyncBusboy(ctx.req);
+```
+, you need to use
+```js
+const { files, fields } = await ctx.req.getAsyncBusboyBody();
 ```
 
 
